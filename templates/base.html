@@ -1,0 +1,196 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+    <title>BookStoreOnline</title>
+    
+    
+  </head>
+ 
+  <body>
+     <header class='header'>
+       <nav class="navbar navbar-expand-lg navbar-dark">
+         <div class="container">
+           <a href="/" class='text-light navbar-brand'><img class='image-fluid' src="{% static 'books.png' %}" alt="book_image" height=35px> BookStore</a>
+
+           <!-- navigation-toggler -->
+
+           <button class="navbar-toggler navbar-toggler-right" type='button' data-toggle='collapse'
+           data-target='#menu' aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+           <span class="navbar-toggler-icon ">
+            
+              
+           </span>
+          </button>
+
+          <!-- button-items -->
+          
+          <div id='menu' class='collapse navbar-collapse'>
+            <ul class="navbar-nav mx-auto ml-auto text-light">
+              <li class='nav-item'>
+                <a href="{% url 'orders' %}" class='text-light nav-link'><i class="fas fa-cart-plus fa-md"> My Orders</i></a>
+              </li>
+              <li class='nav-item'>
+                <a href="{% url 'cart' %}" class='text-light nav-link'><i class="fas fa-shopping-cart fa-md"> My Cart</i></a>
+              </li>
+              <li class='nav-item'>
+                <a href="{% url 'service' %}" class='text-light nav-link'><i class="fas fa-phone-square-alt fa-md"> Contact</i></a>
+              </li>
+              <li class='nav-item'>
+                  <a href="{% url 'about' %}" class='text-light nav-link'><i class="fas fa-address-card fa-md"> About Us</i></a>
+              </li>
+            </ul>
+
+            <!-- right-items -->
+
+            <ul class="navbar-nav">
+              
+              {% if user.is_authenticated %}
+                  {% if money >= 700 %}
+                    <li class="nav-item">
+                      <a href="#" class='text-light nav-link'>
+                      <i class="fas fa-plus">hello</i>
+                      </a>
+                    </li>    
+                  {% endif %}
+                <li class="nav-item">
+                  <a href="{% url 'logout' %}" class='text-light nav-link'>
+                    <i class="fas fa-user-slash fa-md"> Logout</i>
+                  </a>
+                </li>  
+              {% else %}
+              <li class="nav-item">
+                <a href="{% url 'login' %}" class='text-light nav-link'
+                data-target="#login"
+                data-toggle="modal"><i class="fas fa-user fa-md"> Login</i></a>
+              </li>
+              <li class="nav-item">
+                  <a href="{% url 'signup' %}" class='text-light nav-link'
+                  data-target="#signup"
+                data-toggle="modal"><i class="fas fa-user-plus fa-md"> Signup</i></a>
+              </li>
+              {% endif %}
+              
+            </ul>
+          </div>
+         </div>
+       </nav>
+      </header> 
+
+      <!-- login modal -->
+      
+      <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header" style='background-color:#1287A5;'>
+                <h5 class="modal-title text-center text-light" id="login">Login</h5>
+              </div>
+              <div class="modal-body">
+                <form method='POST' action="{% url 'login' %}">{% csrf_token %}
+                  <div class="form-group"><i class='fa fa-user'> Username:</i>
+                    <input type="text" class="form-control" placeholder="Enter Your Username" name='username'>     
+                  </div>
+                  <div class="form-group">
+                    <i class='fa fa-lock'> Password:</i>
+                    <input type="password" class="form-control" placeholder="**********" name='password'>
+                  </div>
+                  <div id='forget'>
+                    <a href="{% url 'forget' %}" class='text-danger'>Forget password</a>
+                  </div>
+                <div class='modal-footer justify-content-center'>
+                <button type="submit" class=" btn btn-outline-success">Login</button></div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <!-- signup-modal -->
+      
+      <div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header" style='background-color:#1287A5;'>
+                <h5 class="modal-title text-light text-center" id="login">Signup</h5>
+              </div>
+              <div class="modal-body">
+                <form method='POST' action="{% url 'signup' %}">{% csrf_token %}
+                  <div class="form-group">
+                    <i class='fa fa-user'> Fisrt name:</i>
+                    <input type="text" class='form-control' placeholder="Enter the first name" name='first_name'>
+                  </div>
+                  <div class="form-group">
+                    <i class='fa fa-user'> Last name:</i>
+                    <input type="text" class='form-control' placeholder="Enter the last name" name='last_name'>
+                  </div>
+                  <div class="form-group">
+                      <i class='fa fa-user'> username:</i>
+                      <input type="text" class='form-control' placeholder="Enter the Username" name='username'>
+                  </div>
+                  <div class="form-group">
+                    <i class='fa fa-envelope'> Email:</i>
+                    <input type="email" class='form-control' placeholder="Enter your email id" name='email'>
+                  </div>                                                
+                  <div class="form-group">
+                    <i class='fa fa-lock'> Password:</i>
+                      <input type="password" class='form-control' placeholder="***********" name='password1'>
+                    </div>
+                    <div class="form-group">
+                    <i class='fa fa-lock'> Confirm Password:</i>
+                        <input type="password" class='form-control' placeholder="***********" name='password2'></div>
+
+                    <div class="custom-control custom-switch ml-3">
+                      <input type="checkbox" name='Seller' class="custom-control-input" id="customSwitch1">
+                      <label class="custom-control-label" for="customSwitch1">I am a Seller.</label>
+                    </div> 
+                    <p class='mt-2'>
+                      <span>If you are a Seller then enter the monthly payment for selling.</span>
+                      <span class='mt-1'>Remember minimum amount is $700.</span>
+                    </p>
+                    <div class="form-group">
+                      <i class='fa fa-lock'> Amount (in $):</i>
+                      <input type="password" class='form-control' placeholder="Enter the amount" name='amount'>
+                    </div>     
+                    <div class="custom-control custom-switch ml-3 mt-3">
+                      <input type="checkbox" name='Customer' class="custom-control-input" id="customSwitch2">
+                      <label class="custom-control-label" for="customSwitch2">I am a Customer.</label>
+                    </div>      
+
+                    <div class='modal-footer justify-content-center'>  
+                    
+                    
+                     
+                    <button type="submit" class=" btn  btn-outline-success">Signup!!</button></div>
+                    
+                  </form>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      {% block content %}
+
+      {% endblock content %}
+      <footer class='text-muted'>
+        <div class="container text-center text-success display-7">
+          <hr>
+          Have a happy {% now "Y" %}
+        </div>
+      </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/aafa78484d.js"></script>
+  </body>
+</html>
