@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method='POST' action="{% url 'addproducts' %}">{% csrf_token %}
+        <div class="form-group"><i class='fa fa-user'> Name of the Book: </i>
+          <input type="text" class="form-control" placeholder="Name" name='Name'>     
+        </div>
+        <div class="form-group">
+          <i class='fa fa-user'> Publisher: </i>
+          <input type="text" class="form-control" placeholder="Publisher" name='publisher'>
+        </div>
+        <div class='form-group'>
+          <i class='fa fa-user'> Name of the author: </i>
+          <input type="text" class='form-control' placeholder="Author" name='author'>
+        </div>
+        <div class='form-group'>
+          <i class='fa fa-user'> Edition of the book: </i>
+          <input type="text" class='form-control' placeholder="Edition" name='edition'>
+        </div>
+        <div class='form-group'>
+            <i class='fa fa-user'> ISBN no.: </i>
+            <input type="text" class='form-control' placeholder="ISBN no." name='ISBN'>
+        </div>
+        <div class='form-group'>
+            <i class='fa fa-user'> Language: </i>
+            <input type="text" class='form-control' placeholder="Language" name='Language'>
+        </div>
+        <div class='form-group'>
+            <i class='fa fa-user'> No. of pages: </i>
+            <input type="text" class='form-control' placeholder="Pages" name='pages'>
+        </div>
+        <div class='form-group'>
+            <i class='fa fa-user'> Price: </i>
+            <input type="text" class='form-control' placeholder="Amount" name='price'>
+        </div>
+        <div class='form-group'>
+            <i class='fa fa-user'> Image: </i>
+            <input type="file" class='form-control' placeholder="Upload the image" name='Image'>
+        </div>
+      <div class='modal-footer justify-content-center'>
+      <button type="submit" class=" btn btn-outline-success">Submit</button></div>
+      </form>
+
+{% endblock %}
