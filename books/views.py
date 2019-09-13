@@ -32,7 +32,7 @@ def addproducts(request):
         if request.POST['Name']!=None and request.POST['publisher']!=None and request.POST['language']!=None and request.POST['edition']!=None and request.POST['ISBN']!=None and request.POST['Language']!=None and request.POST['pages']!=None and request.POST['price']!=None and request.POST['Image']!=None:
             products.name = request.POST['Name']
             products.publisher = request.POST['publisher']
-            products.book_language = request.POST['language']
+            
             products.edition = request.POST['edition']
             products.ISBN = request.POST['ISBN']
             products.pages = request.POST['pages']
