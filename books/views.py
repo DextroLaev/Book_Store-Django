@@ -27,18 +27,16 @@ def service(request):
 def addproducts(request):
     products = Books()
     if request.method == 'POST':
-        print(request.POST['language'])
-        print('Successfull')
-        if request.POST['Name']!=None and request.POST['publisher']!=None and request.POST['language']!=None and request.POST['edition']!=None and request.POST['ISBN']!=None and request.POST['Language']!=None and request.POST['pages']!=None and request.POST['price']!=None and request.POST['Image']!=None:
-            products.name = request.POST['Name']
+        if request.POST['Name'] and request.POST['publisher'] and request.POST['author'] and request.POST['edition'] and request.POST['ISBN'] and request.POST['Language'] and request.POST['pages'] and request.POST['price'] and request.FILES['image']:
+            products.Name = request.POST['Name']
             products.publisher = request.POST['publisher']
-            
+            products.book_language = request.POST['Language']
             products.edition = request.POST['edition']
             products.ISBN = request.POST['ISBN']
             products.pages = request.POST['pages']
             products.author = request.POST['author']
             products.price = request.POST['price']
-            products.image = request.FILES['Image']
+            products.image = request.FILES['image']
             products.save()
             return redirect('home')
         else:
