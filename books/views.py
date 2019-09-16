@@ -9,8 +9,8 @@ from accounts.models import Eligibility
 
 # Create your views here.
 def home(request):
-   
-    return render(request,'books/home.html')
+    products = Books.objects.all()
+    return render(request,'books/home.html',{'products':products})
 
 def orders(request):
     return render(request,'books/orders.html')    
@@ -42,8 +42,7 @@ def addproducts(request):
         else:
             messages.error(request,'Please fill all the details')
             return render(request,'books/home.html')
-    else:
-        return render(request,'books/create.html')        
+        
 
 
     

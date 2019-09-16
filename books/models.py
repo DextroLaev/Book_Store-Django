@@ -6,6 +6,7 @@ class Books(models.Model):
     Name = models.TextField()
     publisher = models.CharField(max_length=50)
     book_language = models.CharField(max_length=50)
+    descreption = models.CharField(max_length=300)
     edition = models.CharField(max_length=20)
     ISBN = models.IntegerField()
     pages = models.CharField(max_length=50)

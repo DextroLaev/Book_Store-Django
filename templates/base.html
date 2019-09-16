@@ -55,7 +55,7 @@
               {% if user.is_authenticated %}
                   
                     <li class="nav-item">
-                      <a href="{% url 'addproducts' %}" class='text-light nav-link'>
+                      <a href="{% url 'addproducts' %}" class='text-light nav-link' data-target="#add" data-toggle="modal">
                       <i class="fas fa-plus"></i>
                       </a>
                     </li>    
@@ -176,7 +176,7 @@
         </div>
       </div>
       
-      <!-- Product adding modal
+      <!-- Product adding modal-->
         
       <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -185,7 +185,7 @@
               <h5 class="modal-title text-center text-light" id="add">Add Book</h5>
             </div>
             <div class="modal-body">
-              <form method='POST' action="{% url 'addproducts' %}">{% csrf_token %}
+              <form method='POST' action="{% url 'addproducts' %}" enctype='multipart/form-data'>{% csrf_token %}
                 <div class="form-group"><i class='fa fa-user'> Name of the Book: </i>
                   <input type="text" class="form-control" placeholder="Name" name='Name'>     
                 </div>
@@ -219,7 +219,7 @@
                 </div>
                 <div class='form-group'>
                     <i class='fa fa-user'> Image: </i>
-                    <input type="file" class='form-control' placeholder="Upload the image" name='Image'>
+                    <input type="file" class='form-control' placeholder="Upload the image" name='image'>
                 </div>
               <div class='modal-footer justify-content-center'>
               <button type="submit" class=" btn btn-outline-success">Submit</button></div>
@@ -227,7 +227,7 @@
             </div>
           </div>
         </div>
-      </div> -->
+      </div>
 
       {% block content %}
 

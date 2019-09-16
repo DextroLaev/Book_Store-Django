@@ -15,41 +15,39 @@
 </div>
 
 <div class='container mt-5'>
-    
-    <div class = 'row'>
+
+{% for products in products %}    
+    <div class = 'row pt-3'>
        <div class='col-3 '>
            <div class='card' style="width: 18rem;"></div>
-           <img src="{% static 'phone.jpg' %}" class='card-img-top' alt="...">
-           <div class='card-body'>
-               <h5 class='card-title'>First Book</h5>
-               <p class='card-text'>Lorem 
-                   ipsum dolor sit amet consectetur 
-                   adipisicing elit. Sunt, error!</p>
-           </div>
-       </div>
-
-       <div class='col-6'>
-           <b><h2>Samsung A8 (Diamond Silver)</h2></b>   
-           <b>2,25,708</b> Ratings & <b>22,451</b> Reviews
-           <p>
-               <li>2 GB RAM | 16 GB ROM | Expandable Upto 256 GB</li>
-               <li>15.49 cm(6.1 inch)HD + Display</li>
-               <li>13MP + 2MP | 5MP Front Camera</li>
-               <li>4000 mAH Battery</li>
-               <li>MediaTek Octa Core 2.50 Ghz Processor </li>
-               <li>Dual Nano SIM with Memory Card Slot</li>
-               <li>Face Unlock</li>
-               <li>Warranty of 1 Year</li>
-           </p>
+           <img src="{{products.image.url}}" class='img-fluid' alt="...">
            
        </div>
 
+       <div class='col-5 ml-5'>
+           <b><h2>{{products.Name}}</h2></b>   
+           <p>
+               <li class='mt-1'>Author:- {{products.author}}  |  Edition: {{products.edition}}</li>
+               <li class='mt-1'>Publisher:- {{products.publisher}}</li>  
+               <li class='mt-1'>ISBN no.: {{products.ISBN}}</li>
+               <li class='mt-1'>Language:- {{products.book_language}}</li>
+               <li class='mt-1'>Pages: {{products.pages}}</li>
+               <li class=my-1>Description: {{products.descreption}}</li>
+               <li class='mt-1'>Flat 50% off using Paypal </li>
+               <li class='mt-1'>Free Delivery by us.</li>
+               
+           </p>
+           
+          
+       </div>
+       
        <div class='col-3'>
-           <h3>₹6,999</h3>
-           <span class = 'text-success'>14% Discount</span>
-           <span>Up to ₹5,900 off on Exchange</span>
-           <span>EMI starting from ₹200/month</span>
-           <p class='mt-5'>
+           <h3>₹ {{products.price}}</h3>
+           <span class='text-info'><p class='mt-3'>If the book is not in good condition don't accept it.</p></span>
+           <span class='text-info mt-3'><p class='mt-3'>If the package is broken , don't accept it.</p></span>
+           <span class = 'text-success mt-3'><p class='mt-3'>14% Discount</p></span>
+           <span><p class='mt-3'>EMI starting from ₹100/month</p></span>
+           <p class='mt-4'>
                <span class='text-success'>Offers</span>
                <li>Special Price</li>
            </p>
@@ -58,17 +56,13 @@
 
        </div>
     </div>
+    <hr>
         
         
     
 </div>
-
-{% for items in items %}
-
-<h1>{{items.title}}</h1>
-<h1>{{items.author}}</h1>
-
 {% endfor %}
+
 {% endblock content %} 
 
 
