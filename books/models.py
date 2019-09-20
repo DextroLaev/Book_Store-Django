@@ -16,4 +16,4 @@ class Books(models.Model):
     #hunter = models.CharField(User,on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.Name
+        return self.Name + '({})'.format(self.id)

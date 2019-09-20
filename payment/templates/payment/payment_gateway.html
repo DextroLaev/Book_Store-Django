@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-2 text-center"></div>
+        <div class="col-8 text-center">
+            <div class="alert alert-success">
+            Welcome to the payment gateway
+            </div>
+        </div>    
+    </div>
+    <div class='row mt-2'>
+        <div class="col-2"></div>
+        <div class="col-md-8">
+
+            <div class="container">
+            <form action="{% url 'buy' %}" method='POST'>{% csrf_token %}
+                <!-- Customer information field -->
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Name:- </span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Enter your name" name='name'>
+                </div>
+
+                <div class='input-group mb-3'>
+                    <div class="input-group-prepend">
+                            <span class="input-group-text">Address:- </span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Enter your address" name='address'>
+                </div>
+
+                <div class='input-group mb-3'>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">City:- </span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Enter your city" name='city'>
+                </div>
+ 
+                <div class='input-group mb-3'>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">State:- </span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Enter your state" name='state'>
+                </div>
+
+                <div class='input-group mb-3'>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Zipcode:- </span>
+                    </div>
+                    <input type="integer" class="form-control" placeholder="Enter your area's zipcode" name='zipcode'>
+                </div>
+
+                <div class='input-group mb-3'>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Phone:- </span>
+                    </div>
+                    <input type="integer" class="form-control" placeholder="Enter your phone no." name='phone'>
+                </div>
+
+                <div class="alert alert-info mt-5">
+                    Select mode of payment
+                </div>
+                <!-- Payment method -->
+                <div class="container">
+
+                    <!--debit card / credit card  -->
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" name='debit' class="custom-control-input" id="debitcard" data-toggle="collapse" data-target="#debitcard" aria-expanded="false" aria-controls="debitcard">
+                        <label class="custom-control-label" for="debitcard">Debit card/Credit card</label>
+                    </div>
+                    
+                    <div class="collapse" id="debitcard">
+
+                        <div class="input-group mb-3 mt-3">
+                            <div class="input-group-prepend">
+                                <span class='input-group-text'>Name of card holder:-  </span>
+                            </div>
+                            <input type="text" class='form-control' placeholder='Enter card holder name' name='cardname'>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class='input-group-text'>Card no:-  </span>
+                            </div>
+                            <input type="integer" class='form-control' placeholder='Enter your card no.' name='cardno'>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class='input-group-text'>Enter expirey date:-  </span>
+                            </div>
+                            <input type="integer" class='form-control' placeholder='Month' name='cardmonth'>
+                            <input type="integer" class='form-control' placeholder='Date' name='carddate'>
+                        </div>
+                
+                    </div>
+
+                    <!-- cash on delivery -->
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" name='cod' class="custom-control-input" id="cod">
+                        <label class="custom-control-label" for="cod">COD</label>
+                    </div>
+    
+                </div>
+                <!-- Submit button -->
+                <button class='btn btn-outline-success mt-4' type='Submit'>Proceed and Buy</button>
+            </form>    
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -21,6 +21,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'payment.apps.PaymentConfig',
     'accounts.apps.AccountsConfig',
     'books.apps.BooksConfig',
     'django.contrib.admin',
