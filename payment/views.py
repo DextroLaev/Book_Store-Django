@@ -7,7 +7,7 @@ def payment_gateway(request,product_id):
     product = Books.objects.get(id=product_id)
     return render(request,'payment/payment_gateway.html',{'product':product})
 
-def buy(request,product_id):
+def buy(request,product_id,user_id):
     if request.method=='POST':
         user = Payment()
         user.name = request.POST['name']
@@ -20,6 +20,7 @@ def buy(request,product_id):
         user.card_day = request.POST['carddate']
         user.card_month = request.POST['cardmonth']
         user.product_id = product_id
+        user.current_user_id = user_id
         if request.POST.get('debitcard','on'):
             user.payment_type = "Debit card/Credit card"
             card_number = request.POST['cardno']

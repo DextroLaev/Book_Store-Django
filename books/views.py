@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from . models import Books
+from payment.models import Payment
 from django.contrib import messages
 from accounts.models import Eligibility
 
@@ -12,8 +13,11 @@ def home(request):
     products = Books.objects.all()
     return render(request,'books/home.html',{'products':products})
 
-def orders(request):
-    return render(request,'books/orders.html')    
+def orders(request,user_id):
+    payment_info = Payment.objects.filter(current_user_id = user_id)
+    same_product_id = payment_info[0].product_id
+    product_info = Books.objects.filter(id=same_product_id)
+    return render(request,'books/orders.html',{'payment_info':payment_info,"product_info":product_info})    
 
 def cart(request):
     return render(request,'books/cart.html')    
