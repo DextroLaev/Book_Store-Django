@@ -34,12 +34,14 @@
           
           <div id='menu' class='collapse navbar-collapse'>
             <ul class="navbar-nav mx-auto ml-auto text-light">
+            {% if user.is_authenticated %}
               <li class='nav-item'>
                 <a href="{% url 'orders' %}" class='text-light nav-link'><i class="fas fa-cart-plus fa-md"> My Orders</i></a>
               </li>
               <li class='nav-item'>
                 <a href="{% url 'cart' %}" class='text-light nav-link'><i class="fas fa-shopping-cart fa-md"> My Cart</i></a>
               </li>
+              {% endif %}
               <li class='nav-item'>
                 <a href="{% url 'service' %}" class='text-light nav-link'><i class="fas fa-phone-square-alt fa-md"> Contact</i></a>
               </li>

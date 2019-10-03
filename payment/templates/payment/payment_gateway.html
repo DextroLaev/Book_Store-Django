@@ -16,7 +16,8 @@
         <div class="col-md-8">
 
             <div class="container">
-            <form action="{% url 'buy' %}" method='POST'>{% csrf_token %}
+                
+            <form action="{% url 'buy' product.id %}" method='POST'>{% csrf_token %}
                 <!-- Customer information field -->
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -106,6 +107,7 @@
                 <!-- Submit button -->
                 <button class='btn btn-outline-success mt-4' type='Submit'>Proceed and Buy</button>
             </form>    
+            
             </div>
 
         </div>
