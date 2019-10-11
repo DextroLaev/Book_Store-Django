@@ -11,7 +11,7 @@ class Payment(models.Model):
     card_holder_name = models.CharField(max_length=60)
     card_no = models.CharField(max_length=21)
     product_id= models.IntegerField(default=0)
-    current_user_id = models.IntegerField(default=0)
+    master_user_id = models.IntegerField(default=0)
     card_day = models.IntegerField(default=0)
     card_month = models.IntegerField(default=0)
     payment_type = models.CharField(max_length=20)
