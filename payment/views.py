@@ -37,9 +37,7 @@ def buy(request,product_id,user_id):
                             user.card_no += card_number[i]
                 else:
                     messages.error(request,'Please fill all the card details.')
-                    return redirect('home')    
-                        
-                    
+                    return redirect('home')                   
             else:
                 user.payment_type = 'COD'
 

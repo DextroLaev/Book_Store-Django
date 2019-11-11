@@ -14,9 +14,18 @@ def home(request):
     return render(request,'books/home.html',{'products':products})
 
 def orders(request,user_id):
-    payment_info = Payment.objects.filter(current_user_id = user_id)
-    same_product_id = payment_info[0].product_id
-    product_info = Books.objects.filter(id=same_product_id)
+
+    payment_info = Payment.objects.filter(master_user_id = user_id)
+    
+    products_id = []
+    for users in payment_info:
+        products_id.append(users.product_id)
+  
+    product_info = []
+    for products in products_id:
+        product_info.append(Books.objects.filter(id=products)[0])
+       
+
     return render(request,'books/orders.html',{'payment_info':payment_info,"product_info":product_info})    
 
 def cart(request):
