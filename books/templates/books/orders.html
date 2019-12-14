@@ -11,15 +11,7 @@
     </div>
     
     
-    {% for product_info in product_info %}
-        
-        {{product_info.Name}}|
-        <br>
-        {% for payment_info in payment_info %}
-            {{payment_info.name}}|
-        {% endfor %}
-        <br>
-    {% endfor %}<br>
+   
     
     <!-- Section of orders and payment -->
     {% for product_info in product_info %}
@@ -35,10 +27,10 @@
                 <div class="col-5 text-center alert alert-info mr-3">
                     Product Details <hr>
                     <p>
+                        <li class='mt-1 text-left'>Name:- {{product_info.Name}}</li>
                         <li class='mt-1 text-left'>Author:- {{product_info.author}}</li> 
                         <li class='mt-1 text-left'>Edition:- {{product_info.edition}}</li>
                         <li class='mt-1 text-left'>Publisher:- {{product_info.publisher}}</li>  
-                        <li class='mt-1 text-left'>ISBN no.:- {{product_info.ISBN}}</li>
                         <li class='mt-1 text-left'>Language:- {{product_info.book_language}}</li>
                         <li class='mt-1 text-left'>Pages:- {{product_info.pages}}</li>
                         <li class='my-1 text-left'>Description: {{product_info.descreption}}</li>     
@@ -55,8 +47,9 @@
                         <li class='mt-1 text-left'>State:- {{payment_info.state}}</li>
                         <li class='mt-1 text-left'>Zipcode:- {{payment_info.zipcode}}</li>
                         <li class='mt-1 text-left'>Phone:- {{payment_info.phone}}</li>
-                        <li class='my-1 text-left'>Payment Option: {{payment_info.payment_type}}</li>                
+                        <li class='my-1 text-left'>Payment Option: {{payment_info.payment_type}}</li>
                     </p>
+                    <a href="{% url 'delete_product' payment_info.id %}" class='btn btn-outline-danger'>Cancel</a>
                 </div>
         
                  <div class="col-1"></div>

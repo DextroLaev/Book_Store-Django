@@ -33,10 +33,7 @@ def signup(request):
                 money.save()  
                 user = User.objects.create_user(username=request.POST['username'],password=request.POST['password1'],first_name=request.POST['first_name'],last_name=request.POST['last_name'],email=request.POST['email'])
                 auth.login(request,user)
-                if money.monthly_payment >= 700:
-                   print(money.monthly_payment)
-                   return redirect('home')
-                  #  return render(request,'books/home.html',{'eligible':eligible_user})
+                return redirect('home') 
                 
        else:
           messages.error(request,'Passwords did not matched')

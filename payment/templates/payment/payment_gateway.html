@@ -18,7 +18,7 @@
             <div class="container">
                 
             <form action="{% url 'buy' product.id user.id %}" method='POST'>{% csrf_token %}
-                <!-- Customer information field -->
+                <!-- Customer information field
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text">Name:- </span>
@@ -59,7 +59,7 @@
                         <span class="input-group-text">Phone:- </span>
                     </div>
                     <input type="integer" class="form-control" placeholder="Enter your phone no." name='phone'>
-                </div>
+                </div> -->
 
                 <div class="alert alert-info mt-5">
                     Select mode of payment
@@ -102,7 +102,37 @@
                         <input type="checkbox" name='cod' class="custom-control-input" id="cod">
                         <label class="custom-control-label" for="cod">COD</label>
                     </div>
-    
+
+                    <!-- Paytm -->
+                     <div class="custom-control custom-switch">
+                        <input type="checkbox" name='paytm' class="custom-control-input" id="paytm" data-toggle="collapse" data-target="#paytm" aria-expanded="false" aria-controls="paytm">
+                        <label class="custom-control-label" for="paytm">Paytm</label>
+                    </div>
+
+                    <div class="collapse" id="paytm">
+                        <div class="input-group mb-3 mt-3">
+                            <div class="input-group-prepend">
+                                <span class='input-group-text'>Phone no. linked to paytm:-  </span>
+                            </div>
+                            <input type="integer" class='form-control' placeholder='Phone no.' name='phone_no_paytm'>
+                        </div>
+                    </div> 
+
+                    <!-- Phonepay -->
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" name='phonepay' class='custom-control-input' id='phonepay' data-toggle="collapse" data-target="#phonepay" aria-expanded="false" aria-controls="phonepay">
+                        <label class="custom-control-label" for='phonepay'>Phonepay</label>
+                    </div>
+
+                    <div class="collapse" id="phonepay">
+                        <div class="input-group mb-3 mt-3">
+                            <div class="input-group-prepend">
+                                <span class='input-group-text'>Phone no. linked to phonepay:-  </span>
+                            </div>
+                            <input type="integer" class='form-control' placeholder='Phone no.' name='phone_no_phonepay'>
+                        </div>
+                    </div> 
+
                 </div>
                 <!-- Submit button -->
                 <button class='btn btn-outline-success mt-4' type='Submit'>Proceed and Buy</button>

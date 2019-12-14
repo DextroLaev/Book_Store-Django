@@ -23,7 +23,7 @@ def orders(request,user_id):
   
     product_info = []
     for products in products_id:
-        product_info.append(Books.objects.filter(id=products)[0])
+        product_info.append(Books.objects.filter(id=products))
        
 
     return render(request,'books/orders.html',{'payment_info':payment_info,"product_info":product_info})    
@@ -56,6 +56,11 @@ def addproducts(request):
             messages.error(request,'Please fill all the details')
             return render(request,'books/home.html')
         
+def delete(reqeust,delete_id):
+    to_delete = Payment.objects.filter(id=delete_id)
+    to_delete.delete()
+    return redirect('home')
+
 
 
     

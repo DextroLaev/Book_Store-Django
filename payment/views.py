@@ -10,40 +10,48 @@ def payment_gateway(request,product_id):
 
 def buy(request,product_id,user_id):
     if request.method=='POST':
-        if request.POST['name'] and request.POST['address'] and request.POST['city'] and request.POST['state'] and request.POST['zipcode'] and request.POST['phone']:
-            user = Payment()
-            user.name = request.POST['name']
-            user.address = request.POST['address']
-            user.city = request.POST['city']
-            user.state = request.POST['state']
-            user.zipcode = request.POST['zipcode']
-            user.phone = request.POST['phone']
-            user.product_id = product_id
-            user.master_user_id = user_id
-            if request.POST.get('debitcard','on'):
-                if request.POST['cardno'] and request.POST['cardname'] and request.POST['carddate'] and request.POST['cardmonth']:  
-                    user.payment_type = "Debit card/Credit card"
-                    card_number = request.POST['cardno']
-                    user.card_holder_name = request.POST['cardname']
-                    user.card_day = request.POST['carddate']
-                    user.card_month = request.POST['cardmonth']
-                    for i in range(len(card_number)):
-                        if i==0:
-                            user.card_no += card_number[i]
-                        elif i%4==0:
-                            user.card_no += ' '
-                            user.card_no += card_number[i]
-                        else:
-                            user.card_no += card_number[i]
-                else:
-                    messages.error(request,'Please fill all the card details.')
-                    return redirect('home')                   
-            else:
-                user.payment_type = 'COD'
+        debit = request.POST.get('debitcard','off')
+        cash_on_delivery = request.POST.get('cod','off')
+        paytm = request.POST.get('paytm','off')
+        phone_pay = request.POST.get('phonepay','off')
 
-            user.save()
-            return redirect('home')        
-        else:
-            messages.error(request,'please fill all the columns')
-            return redirect('home')
+        user = Payment()
+        user.product_id = product_id
+        user.master_user_id = user_id
+        if debit=='on':
+            if request.POST['cardno']!=None and request.POST['cardname']!=None and request.POST['carddate']!=None and request.POST['cardmonth']!=None:  
+                user.payment_type = "Debit card/Credit card"
+                card_number_data = request.POST['cardno']
+                user.card_holder_name = request.POST['cardname']
+                user.card_day = request.POST['carddate']
+                user.card_month = request.POST['cardmonth']
+                for i in range(len(card_number_data)):
+                    if i==0:
+                        user.card_no += card_number_data[i]
+                    elif i%4==0:
+                        user.card_no += ' '
+                        user.card_no += card_number_data[i]                      
+                    else:
+                        user.card_no += card_number_data[i]
+                                       
+            else:
+                messages.error(request,'Please fill all the card details.')
+                return redirect('home')                   
+        elif paytm=='on':
+            user.payment_type='Paytm'
+            user.paytm = int(request.POST['phone_no_paytm'])
+            print(user.payment_type)
+        elif phone_pay=='on':
+            user.payment_type = 'Phonepay'    
+            user.phone_pay = int(request.POST['phone_no_phonepay'])
+            print(user.payment_type)
+        elif cash_on_delivery=='on':
+            user.payment_type = 'COD'    
+            print(user.payment_type)
+
+        user.save()
+        return redirect('home')        
+    else:
+        messages.error(request,'please fill all the columns')
+        return redirect('home')
            
