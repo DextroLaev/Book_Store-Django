@@ -17,3 +17,6 @@ class Payment(models.Model):
         
         return "user id:-" + '({})'.format(self.id)
         
+
+class To_order(models.Model):
+    product_to_order_id = models.IntegerField()        

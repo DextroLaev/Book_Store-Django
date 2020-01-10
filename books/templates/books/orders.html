@@ -6,7 +6,7 @@
 
     <div class="container mt-3">
         <div class="col-12 alert alert-success text-center">
-            <i class="fas fa-cart-arrow-down mr-5"></i>   My Orders  <i class="fas fa-cart-arrow-down ml-5"></i>
+            <i class="fas fa-cart-arrow-down mr-5"></i>   My cart  <i class="fas fa-cart-arrow-down ml-5"></i>
         </div>
     </div>
     
@@ -38,19 +38,19 @@
                 </div>
 
                  <!-- Payment info -->
-                <div class="ml-1 text-center col-5 alert alert-warning">
+                <!-- <div class="ml-1 text-center col-5 alert alert-warning">
                     Payment Details <hr>
                     <p>
-                        <li class='mt-1 text-left'>Name:- {{payment_info.name}}</li>  
-                        <li class='mt-1 text-left'>Address:- {{payment_info.address}}</li>
-                        <li class='mt-1 text-left'>City:- {{payment_info.city}}</li>  
+                        <li class='mt-1 text-left'>product id:- {{payment_info.product_id}}</li>  
+                        <li class='mt-1 text-left'>user id:- {{payment_info.master_user_id}}</li>
+                        <li class='mt-1 text-left'>paytm no:- {{payment_info.paytm}}</li>  
                         <li class='mt-1 text-left'>State:- {{payment_info.state}}</li>
                         <li class='mt-1 text-left'>Zipcode:- {{payment_info.zipcode}}</li>
                         <li class='mt-1 text-left'>Phone:- {{payment_info.phone}}</li>
                         <li class='my-1 text-left'>Payment Option: {{payment_info.payment_type}}</li>
                     </p>
                     <a href="{% url 'delete_product' payment_info.id %}" class='btn btn-outline-danger'>Cancel</a>
-                </div>
+                </div> -->
         
                  <div class="col-1"></div>
 

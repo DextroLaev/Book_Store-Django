@@ -1,18 +1,17 @@
 from django.shortcuts import render,redirect
 from . models import Books
-from payment.models import Payment
+from payment.models import Payment,To_order
 from django.contrib import messages
 from accounts.models import Eligibility
 
-# Create your views here.
-
-
-
-# Create your views here.
 def home(request):
     products = Books.objects.all()
     return render(request,'books/home.html',{'products':products})
 
+def cart(request):
+    product_id = To_order.objects.all()
+
+    
 def orders(request,user_id):
 
     payment_info = Payment.objects.filter(master_user_id = user_id)
@@ -23,13 +22,9 @@ def orders(request,user_id):
   
     product_info = []
     for products in products_id:
-        product_info.append(Books.objects.filter(id=products))
+        product_info.append(Books.objects.filter(id=products)[0])
        
-
     return render(request,'books/orders.html',{'payment_info':payment_info,"product_info":product_info})    
-
-def cart(request):
-    return render(request,'books/cart.html')    
 
 def about(request):
     return render(request,'books/about.html')

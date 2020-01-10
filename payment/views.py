@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
-from . models import Payment
+from . models import Payment,To_order
 from books.models import Books
 
 # Create your views here.
@@ -54,4 +54,9 @@ def buy(request,product_id,user_id):
     else:
         messages.error(request,'please fill all the columns')
         return redirect('home')
-           
+
+def add_cart(request,product_id):
+    cart = To_order()
+    cart.product_to_order_id = product_id
+    cart.save()
+    return redirect('home')

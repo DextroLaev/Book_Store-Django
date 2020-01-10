@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 
-Cart
+{% for items in items %}
+    {{items.Name}}<br>
+    {{items.author}}<br>
+
+
+{% endfor %}
 
 {% endblock content %}
