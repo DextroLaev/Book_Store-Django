@@ -8,9 +8,20 @@ def home(request):
     products = Books.objects.all()
     return render(request,'books/home.html',{'products':products})
 
-def cart(request):
-    product_id = To_order.objects.all()
+def cart(request,user_id):
+    product_id = To_order.objects.filter(master_user_id=user_id)
+    product_info = []
+    for ids in product_id:
+        item = Books.objects.filter(id=ids.product_to_order_id)
+        product_info.append(item[0])
+    return render(request,'books/cart.html',{'items':product_info})    
 
+def remove_cart(request,remove_id,user_id):
+    print(user_id)
+    to_delete = To_order.objects.filter(master_user_id=user_id,product_to_order_id=remove_id)
+    to_delete.delete()
+    print(to_delete)
+    return redirect('home')
     
 def orders(request,user_id):
 
