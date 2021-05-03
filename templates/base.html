@@ -39,7 +39,7 @@
                 <a href="{% url 'orders' user.id %}" class='text-light nav-link'><i class="fas fa-cart-plus fa-md"> My Orders</i></a>
               </li>
               <li class='nav-item'>
-                <a href="{% url 'cart' %}" class='text-light nav-link'><i class="fas fa-shopping-cart fa-md"> My Cart</i></a>
+                <a href="{% url 'cart' user.id %}" class='text-light nav-link'><i class="fas fa-shopping-cart fa-md"> My Cart</i></a>
               </li>
               {% endif %}
               <li class='nav-item'>
