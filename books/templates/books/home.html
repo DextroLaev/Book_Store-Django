@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load staticfiles %}
+{% load static %}
 {% block content %}
 
 <div class='container'>
@@ -7,6 +7,10 @@
 <p class='mt-3'>
 {% if user.is_authenticated %}
 <h4><span class='text-success'>Hi  {{user.first_name}} {{user.last_name}} !!</span></h4>
+{% else %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <h5><strong>Sign in!</strong> Experience our service with your clicks.</h5>
+</div>
 {% endif %} <br>
 {% for message in messages %}
 <span class='text-danger'>{{message}}</span>
@@ -51,8 +55,13 @@
                <span class='text-success'>Offers</span>
                <li>Special Price</li>
            </p>
-           <a href="{% url 'add_cart' products.id %}" class= 'btn btn-outline-primary mt-3'>Add To Cart</a>
-           <a href="{% url 'payment_gateway' products.id %}" class= 'btn btn-outline-danger ml-2 mt-3'>Buy Now</a>
+           {% if user.is_authenticated %}
+            <form action="{% url 'add_cart' products.id user.id %}" class='mt-3 ml-2' method='POST'>{% csrf_token %}
+                 <button class='btn btn-outline-primary' type='Submit'>Add to Cart</button>
+            </form>  
+            <a href="{% url 'payment_gateway' products.id %}" class= 'btn btn-outline-danger ml-2 mt-3'>Buy Now</a> 
+          {% endif %}
+          
 
        </div>
     </div>
