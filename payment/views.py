@@ -47,16 +47,17 @@ def buy(request,product_id,user_id):
             print(user.payment_type)
         elif cash_on_delivery=='on':
             user.payment_type = 'COD'    
-            print(user.payment_type)
-
+            print(user.payment_type)    
         user.save()
         return redirect('home')        
     else:
         messages.error(request,'please fill all the columns')
         return redirect('home')
 
-def add_cart(request,product_id):
+def add_cart(request,product_id,user_id):
     cart = To_order()
     cart.product_to_order_id = product_id
+    cart.master_user_id = user_id
+    print(product_id,user_id)
     cart.save()
     return redirect('home')
