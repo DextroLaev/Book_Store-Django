@@ -1,11 +1,47 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{% for items in items %}
-    {{items.Name}}<br>
-    {{items.author}}<br>
+<div class="container">
+    <!-- upper section of heading -->
 
+    <div class="container mt-3">
+        <div class="col-12 alert alert-success text-center">
+            <i class="fas fa-cart-arrow-down mr-5"></i>   My Cart  <i class="fas fa-cart-arrow-down ml-5"></i>
+        </div>
+    </div>
+    
+    
+   
+        
+    <!-- Section of orders and payment -->
+    {% for product_info in items %}        
+            <div class="row mt-4">
 
-{% endfor %}
+                <div class="col-1"></div>
+                <!-- Product info -->
+        
+                <div class="col-5 text-center alert alert-info mr-3">
+                    Product Details <hr>
+                    <p>
+                        <li class='mt-1 text-left'>Name:- {{product_info.Name}}</li>
+                        <li class='mt-1 text-left'>Author:- {{product_info.author}}</li> 
+                        <li class='mt-1 text-left'>Edition:- {{product_info.edition}}</li>
+                        <li class='mt-1 text-left'>Publisher:- {{product_info.publisher}}</li>  
+                        <li class='mt-1 text-left'>Language:- {{product_info.book_language}}</li>
+                        <li class='mt-1 text-left'>Pages:- {{product_info.pages}}</li>
+                        <li class='my-1 text-left'>Description: {{product_info.descreption}}</li>     
+                    </p>
+                    <a href="{% url 'payment_gateway' product_info.id %}" class= 'btn btn-outline-primary ml-2'>Buy Now</a>
+                    <a href="{% url 'remove_product' product_info.id user.id %}" class='btn btn-outline-danger ml-2'>Cancel</a>
+                </div>
+                 <div class="col-1"></div>
 
+            </div>
+            
+   
+
+      
+    {% endfor %}
+    
+</div>
 {% endblock content %}
