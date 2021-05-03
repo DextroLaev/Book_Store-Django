@@ -19,4 +19,8 @@ class Payment(models.Model):
         
 
 class To_order(models.Model):
-    product_to_order_id = models.IntegerField()        
+    product_to_order_id = models.IntegerField()
+    master_user_id = models.IntegerField(default=0)
+
+    def __str__(self):
+        return "user id:- " + '({})'.format(self.id)     
