@@ -1,0 +1,14 @@
+{
+    "builds": [
+      {
+        "src": "Book_Store-Django/wsgi.py",
+        "use": "@vercel/python"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "Book_Store-Django/wsgi.py"
+      }
+    ]
+}
